@@ -154,7 +154,6 @@ namespace TVDBSharp.Models {
                             string.IsNullOrWhiteSpace(episode.GetXmlData("thumb_width"))
                                 ? (int?) null
                                 : Convert.ToInt32(episode.GetXmlData("thumb_width")),
-                        TmsExport = episode.GetXmlData("tms_export"),
                         Writers = new List<string>(episode.GetXmlData("Writer").Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
                     };
 
