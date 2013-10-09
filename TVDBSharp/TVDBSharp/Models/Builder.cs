@@ -32,6 +32,16 @@ namespace TVDBSharp.Models
         }
 
         /// <summary>
+        /// Builds a show object from the given IMDb ID.
+        /// </summary>
+        /// <param name="showID">IMDb ID of the show to serialize into a <see cref="Show"/> object.</param>
+        /// <returns>Returns the Show object.</returns>
+        public Show BuildShowFromImdbID(string imdbID)
+        {
+            return BuildShow(_dataProvider.GetShowByImdbID(imdbID));
+        }
+
+        /// <summary>
         /// Returns a list of <see cref="Show"/> objects that match the given query.
         /// </summary>
         /// <param name="query">Query the search is performed with.</param>
