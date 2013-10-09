@@ -100,10 +100,5 @@ namespace TVDBSharp.Models {
         /// Width dimension of the thumbnail in pixels;
         /// </summary>
         public int? ThumbWidth { get; set; }
-
-        /// <summary>
-        /// Let me know if you find out what this is.
-        /// </summary>
-        public string TmsExport { get; set; }
     }
 }
