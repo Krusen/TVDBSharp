@@ -7,7 +7,7 @@ namespace TVDBSharp {
     /// The main class which will handle all user interaction.
     /// </summary>
     public class TVDB {
-        private readonly IDataProvider _dataProvider;
+        private readonly Builder _builder;
 
         /// <summary>
         /// Creates a new instance with the provided API key and dataProvider.
@@ -15,8 +15,8 @@ namespace TVDBSharp {
         /// <param name="apiKey">The API key provided by TVDB.</param>
         /// <param name="dataProvider">Specify your own <see cref="IDataProvider"/> instance.</param>
         public TVDB(string apiKey, IDataProvider dataProvider) {
-            _dataProvider = dataProvider;
-            _dataProvider.ApiKey = apiKey;
+            dataProvider.ApiKey = apiKey;
+            _builder = new Builder(dataProvider);
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace TVDBSharp {
         /// </summary>
         /// <param name="apiKey">The API key provided by TVDB.</param>
         public TVDB(string apiKey) {
-            _dataProvider = new DataProvider { ApiKey = apiKey };
+            _builder = new Builder(new DataProvider { ApiKey = apiKey });
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace TVDBSharp {
         /// <param name="results">Maximal amount of results in the returning set. Default is 5.</param>
         /// <returns>Returns a list of shows.</returns>
         public List<Show> Search(string query, int results = 5) {
-            return new Builder(_dataProvider).Search(query, results);
+            return _builder.Search(query, results);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace TVDBSharp {
         /// <param name="showId">ID of the show.</param>
         /// <returns>Returns the corresponding show.</returns>
         public Show GetShow(string showId) {
-            return new Builder(_dataProvider).BuildShow(showId);
+            return _builder.BuildShow(showId);
         }
     }
 }
