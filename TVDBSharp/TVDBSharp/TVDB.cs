@@ -45,5 +45,15 @@ namespace TVDBSharp {
         public Show GetShow(string showId) {
             return _builder.BuildShow(showId);
         }
+
+        /// <summary>
+        /// Get a specific show based on its IMDb ID.
+        /// </summary>
+        /// <param name="imdbID">IMDb ID of the show.</param>
+        /// <returns>Returns the corresponding show.</returns>
+        public Show GetShowByImdbID(string imdbID)
+        {
+            return _builder.BuildShowFromImdbID(imdbID);
+        }
     }
 }
